@@ -121,6 +121,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountContactController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Desensitize\MethodExecutor.cs" />
     <Compile Include="Desensitize\Attributes\CompositeAttribute.cs" />
     <Compile Include="Desensitize\Attributes\CustomMethodAttribute.cs" />
     <Compile Include="Desensitize\Attributes\CustomRuleAttribute.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Desensitize\DesensitizationUtil.cs" />
     <Compile Include="Desensitize\DesensitizationDataAnnotationsProvider.cs" />
     <Compile Include="Desensitize\Permissions\PFUserAuthorize.cs" />
+    <Compile Include="Desensitize\PropertyExecutor.cs" />
     <Compile Include="Dtos\AccountContactDto.cs" />
     <Compile Include="Dtos\AccountDto.cs" />
     <Compile Include="Dtos\DebtorDto.cs" />

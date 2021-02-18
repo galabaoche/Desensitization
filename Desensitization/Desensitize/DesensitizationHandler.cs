@@ -19,6 +19,12 @@ namespace Desensitization.Desensitize
             MethodInfo DesensitizationInvoke = typeof(DesensitizationHandler).GetMethod("DesensitizationInvoke", BindingFlags.Static | BindingFlags.NonPublic);
             DesensitizationInvoke.MakeGenericMethod(elementType).Invoke(null, new object[] { source });
         }
+
+        /// <summary>
+        /// 此方法直接不能调用，只能反射调用
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
         private static void DesensitizationInvoke<T>(IEnumerable<T> source)
         {
             var instanceList = source.ToList();
@@ -119,7 +125,10 @@ namespace Desensitization.Desensitize
                     }
                     matched = true;
                     metadata.Model = desensitizationAttribute.Desensitizate(metadata.Model.ToString());
-                    metadata.ContainerType.GetProperty(metadata.PropertyName).SetValue(metadata.Container, metadata.Model);
+                    //防止循环中频繁反射损伤性能，使用表达式树做了编译缓存
+                    PropertyExecutor executor = new PropertyExecutor(metadata.ContainerType.FullName, metadata.PropertyName);
+                    executor.SetValue(metadata.Container, metadata.Model.ToString());
+                    //metadata.ContainerType.GetProperty(metadata.PropertyName).SetValue(metadata.Container, metadata.Model);
                     break;
                 }
             }

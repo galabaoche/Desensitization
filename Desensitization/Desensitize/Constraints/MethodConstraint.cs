@@ -48,7 +48,9 @@ namespace Desensitization.Desensitize.Constraints
             {
                 throw new InvalidOperationException($"方法返回值因为bool类型");
             }
-            return Convert.ToBoolean(methodInfo.Invoke(null, new object[] { value }));
+            ActionExecutor executor = new ActionExecutor(methodInfo);
+            return Convert.ToBoolean(executor.Execute(null, new object[] { value }));
+            //return Convert.ToBoolean(methodInfo.Invoke(null, new object[] { value }));
         }
     }
 }

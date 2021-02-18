@@ -51,16 +51,18 @@ namespace Desensitization.Desensitize.ConstraintResolver
                     }
                     value = propertyMetadata.Model;
                 }
-                else 
+                else
                 {
-                    var propertyInfo= metadata.ContainerType.GetProperty(propertyName);
-                    if (propertyInfo==null)
-                    {
-                        return;
-                    }
-                    value = propertyInfo.GetValue(metadata.Container);
+                    //防止循环中频繁反射损伤性能，使用表达式树做了编译缓存
+                    PropertyExecutor executor = new PropertyExecutor(metadata.ContainerType.FullName, propertyName);
+                    value = executor.GetValue(metadata.Container);
+                    //var propertyInfo= metadata.ContainerType.GetProperty(propertyName);
+                    //if (propertyInfo==null)
+                    //{
+                    //    return;
+                    //}
+                    //value = propertyInfo.GetValue(metadata.Container);
                 }
-               
             }
 
             DefaultInlineConstraintResolver defaultInlineConstraint = new DefaultInlineConstraintResolver();

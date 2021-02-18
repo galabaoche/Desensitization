@@ -57,7 +57,9 @@ namespace Desensitization.Desensitize.Attributes
             {
                 throw new InvalidOperationException($"方法返回值因为string类型");
             }
-            methodInfo.Invoke(null, new object[] { metadata.Model }).ToString();
+            ActionExecutor executor = new ActionExecutor(methodInfo);
+            executor.Execute(null, new object[] { metadata.Model });
+           // methodInfo.Invoke(null, new object[] { metadata.Model }).ToString();
         }
     }
 }
