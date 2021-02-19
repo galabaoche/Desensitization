@@ -6,6 +6,10 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Attributes
 {
+
+    /// <summary>
+    /// 满足正则Pattern的会被替换为自定义的ReplaceContent
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class RegexReplaceAttribute : DesensitizationAttribute
     {

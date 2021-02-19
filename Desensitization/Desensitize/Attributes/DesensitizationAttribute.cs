@@ -8,10 +8,10 @@ using System.Web.Mvc;
 namespace Desensitization.Desensitize.Attributes
 {
     /// <summary>
-    /// 脱敏规则抽象类
+    /// 脱敏规则父类
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
-    public class DesensitizationAttribute : Attribute, IMetadataAware
+    public class DesensitizationAttribute : Attribute
     {
         private object _typeId;
         public override object TypeId
@@ -82,15 +82,6 @@ namespace Desensitization.Desensitize.Attributes
         public virtual string DesensitizateCore(string originVaule)
         {
             return originVaule;
-        }
-
-        public void OnMetadataCreated(ModelMetadata metadata)
-        {
-            metadata.ShowForDisplay = ShowForDisplay;
-            if (!string.IsNullOrEmpty(ShortDisplayName))
-            {
-                metadata.ShortDisplayName = ShortDisplayName;
-            }
         }
     }
 }

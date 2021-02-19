@@ -12,6 +12,9 @@ using System.Web.Mvc;
 
 namespace Desensitization.Desensitize
 {
+    /// <summary>
+    /// 脱敏处理者，承担主要的脱敏工作
+    /// </summary>
     public class DesensitizationHandler
     {
         public static void DesensitizationCollection(Type elementType, object source)

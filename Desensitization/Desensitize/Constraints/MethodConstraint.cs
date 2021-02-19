@@ -6,6 +6,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Constraints
 {
+    /// <summary>
+    /// 自定义方法检测是否通过约束
+    /// </summary>
     public class MethodConstraint : IConstraint
     {
         public MethodConstraint(string methodFullName)

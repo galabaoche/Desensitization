@@ -121,6 +121,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountContactController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Desensitize\DesensitizeFilter.cs" />
+    <Compile Include="Desensitize\DesensitizeResult.cs" />
     <Compile Include="Desensitize\MethodExecutor.cs" />
     <Compile Include="Desensitize\Attributes\CompositeAttribute.cs" />
     <Compile Include="Desensitize\Attributes\CustomMethodAttribute.cs" />

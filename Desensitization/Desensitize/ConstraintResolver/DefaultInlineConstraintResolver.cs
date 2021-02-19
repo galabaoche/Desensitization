@@ -1,5 +1,6 @@
 ﻿using Desensitization.Desensitize.Constraints;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,8 +9,12 @@ using System.Web;
 
 namespace Desensitization.Desensitize.ConstraintResolver
 {
+    /// <summary>
+    /// 默认使用的约束检查
+    /// </summary>
     public class DefaultInlineConstraintResolver : IInlineConstraintResolver
     {
+        private ConcurrentDictionary<string, IConstraint> _constraintCache = new ConcurrentDictionary<string, IConstraint>();
         private readonly IDictionary<string, Type> _inlineConstraintMap = GetDefaultConstraintMap();
 
         public IDictionary<string, Type> ConstraintMap
@@ -49,7 +54,12 @@ namespace Desensitization.Desensitize.ConstraintResolver
             {
                 throw new ArgumentNullException("inlineConstraint");
             }
-
+            IConstraint constraint;
+            if (_constraintCache.TryGetValue(inlineConstraint,out constraint))
+            {
+                return constraint;
+            }
+           
             string constraintKey;
             string argumentString;
             int indexOfFirstOpenParens = inlineConstraint.IndexOf('(');
@@ -70,13 +80,15 @@ namespace Desensitization.Desensitize.ConstraintResolver
                 return null;
             }
 
-
             if (!typeof(IConstraint).IsAssignableFrom(constraintType))
             {
                 throw new InvalidOperationException("Invalid Constraint ");
             }
 
-            return (IConstraint)CreateConstraint(constraintType, argumentString);
+            constraint=(IConstraint)CreateConstraint(constraintType, argumentString);
+            _constraintCache[inlineConstraint] = constraint;
+            return constraint;
+
         }
 
         private static object CreateConstraint(Type constraintType, string argumentString)

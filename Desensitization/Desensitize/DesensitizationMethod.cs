@@ -7,6 +7,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize
 {
+    /// <summary>
+    /// 指定某个规则走自定义方法时候，这个是被指定的方法名
+    /// </summary>
     public class DesensitizationMethod
     {
         public static string DesensitizeContact(AccountContactDto contactDto)

@@ -8,6 +8,9 @@ using System.Reflection;
 
 namespace Desensitization.Desensitize
 {
+    /// <summary>
+    ///  将反射获取属性和设置属性封装为表达式树做编译缓存，防止大量反射的性能损伤
+    /// </summary>
     public class PropertyExecutor
     {
         private static ConcurrentDictionary<string, Action<object, string>> propertySetdelegates = new ConcurrentDictionary<string, Action<object, string>>();

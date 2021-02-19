@@ -7,6 +7,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Constraints
 {
+    /// <summary>
+    /// 验证值是否匹配指定的Pattern正则
+    /// </summary>
     public class RegexConstraint : IConstraint
     {
         private readonly Regex _regex;

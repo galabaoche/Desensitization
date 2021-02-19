@@ -6,6 +6,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Constraints
 {
+    /// <summary>
+    /// 验证值是否在Min与Max之间
+    /// </summary>
     public class RangeConstraint: IConstraint
     {
         public RangeConstraint(long min, long max)

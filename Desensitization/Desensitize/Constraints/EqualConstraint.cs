@@ -6,6 +6,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Constraints
 {
+    /// <summary>
+    /// 验证值是否等于value
+    /// </summary>
     public class EqualConstraint : IConstraint
     {
         public EqualConstraint(object value)

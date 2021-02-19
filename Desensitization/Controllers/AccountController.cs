@@ -9,12 +9,27 @@ using System.Web.Mvc;
 
 namespace Desensitization.Controllers
 {
-    public class AccountController : Controller
+
+    public class AccountController : ControllerBase
     {
+        //[DesensitizeFilter]
         public ActionResult Index()
         {
             IList<AccountDto> accountList = new List<AccountDto>()
             {
+                 new AccountDto{
+                    OutIDNumber="6225561450094476",
+                    AccountNumber="1004508242000002",
+                    CustomerId=234,
+                    CustomerName="来自月球的客户",
+                    ProvinceName="河北",
+                    CityName="秦皇岛",
+                    Debtor=new DebtorDto
+                    {
+                        IDNumber="232321196911082917",
+                        DebtorName="凌达"
+                    }
+                },
                 new AccountDto{
                     OutIDNumber="6225561450094476",
                     AccountNumber="1004508242000002",
@@ -81,8 +96,9 @@ namespace Desensitization.Controllers
                     }
                 },
             };
-            accountList.Desensitizate();
-            return Json(accountList, JsonRequestBehavior.AllowGet);
+            // accountList.Desensitizate();
+            //return Json(accountList,JsonRequestBehavior.AllowGet);
+            return Desensitizate(accountList);
         }
     }
 }

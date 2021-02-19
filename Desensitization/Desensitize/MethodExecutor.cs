@@ -9,6 +9,9 @@ using System.Collections.Concurrent;
 
 namespace Desensitization.Desensitize
 {
+    /// <summary>
+    /// 将需要掉用的方法封装为表达式树做编译缓存，防止大量反射的性能损伤
+    /// </summary>
     public class ActionExecutor
     {
         private static ConcurrentDictionary<MethodInfo, object> delegates = new ConcurrentDictionary<MethodInfo, object>();

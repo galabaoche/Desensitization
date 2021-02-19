@@ -6,6 +6,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Constraints
 {
+    /// <summary>
+    /// 验证value里面是否包含此值
+    /// </summary>
     public class ContainsConstraint : IConstraint
     {
         public ContainsConstraint(object value)

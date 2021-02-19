@@ -6,6 +6,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Constraints
 {
+    /// <summary>
+    /// 验证长度是否大于等于MinLength
+    /// </summary>
     public class MinLengthConstraint : IConstraint
     {
         public MinLengthConstraint(int minLength)

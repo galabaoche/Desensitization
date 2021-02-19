@@ -7,6 +7,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Extensions
 {
+    /// <summary>
+    /// 脱敏权限扩展
+    /// </summary>
     public static class DesensitizationPermissionExtension
     {
         public static void SetUserAuthorize(this HttpContext context)
@@ -98,6 +101,14 @@ namespace Desensitization.Desensitize.Extensions
                 context.Items.Remove(DesensitizionKey.DefaultUserAuthorize);
             }
         }
+
+        /// <summary>
+        /// 供外部调用的权限检查方法
+        /// 按照配置权限进行脱敏，无配置的话： 自定义规则默认脱敏，默认规则默认不脱敏
+        /// </summary>
+        /// <param name="ruleName"></param>
+        /// <param name="displayName"></param>
+        /// <returns></returns>
         public static bool IsHasDisplayPermission(this string ruleName, string displayName)
         {
             switch (ruleName)
@@ -114,7 +125,7 @@ namespace Desensitization.Desensitize.Extensions
                         return false;
                     }
                     return pFUserAuthorizeAccessor(pFUserAuthorize);
-                default:
+                case "":
                     var defaultUserAuthorize = HttpContext.Current.Items[DesensitizionKey.DefaultUserAuthorize] as DefaultUserAuthorize;
                     if (defaultUserAuthorize == null)
                     {
@@ -126,6 +137,8 @@ namespace Desensitization.Desensitize.Extensions
                         return true;
                     }
                     return defaultUserAuthorizeAccessor(defaultUserAuthorize);
+                default:
+                    return false;
             }
         }
         public static PFUserAuthorize GetPFUserAuthorize(this HttpContext context)

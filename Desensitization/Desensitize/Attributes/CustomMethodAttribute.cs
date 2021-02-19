@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace Desensitization.Desensitize.Attributes
 {
+    /// <summary>
+    /// 指定某个规则走自定义方法，这样针对某个规则的所有处理通过指定的自定义方法实现
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class CustomMethodAttribute : Attribute
     {

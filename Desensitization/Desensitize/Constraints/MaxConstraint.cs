@@ -6,6 +6,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Constraints
 {
+    /// <summary>
+    /// 验证值是否小于等于Max
+    /// </summary>
     public class MaxConstraint : IConstraint
     {
         public MaxConstraint(long max)

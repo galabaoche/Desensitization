@@ -7,6 +7,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize
 {
+    /// <summary>
+    /// 脱敏规则的另一种配置方式
+    /// </summary>
     public class DesensitizationRuleDictionary
     {
         public static IDictionary<string, List<DesensitizationAttribute>> Rules { get; private set; }

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Desensitization.Controllers
 {
-    public class AccountContactController : Controller
+    public class AccountContactController : ControllerBase
     {
         public ActionResult Index()
         {
@@ -215,9 +215,8 @@ namespace Desensitization.Controllers
                     ContactTypeName="身份证地址",
                 },
             };
-            contactList.Desensitizate();
-            //DesensitizationProviders.Desensitizate(contactList);
-            return Json(contactList, JsonRequestBehavior.AllowGet);
+            //contactList.Desensitizate();
+            return Desensitizate(contactList);
         }
     }
 }

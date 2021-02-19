@@ -10,6 +10,10 @@ using System.Web.Mvc;
 
 namespace Desensitization.Desensitize.Extensions
 {
+    /// <summary>
+    /// 脱敏扩展类： 提供脱敏调用入口
+    ///以及对脱敏特性封装为可直接调用的扩展方法，例如："12345".LeftDisplay(2);
+    /// </summary>
     public static class DesensitizationExtension
     {
         public static void Desensitizate(this object instance)

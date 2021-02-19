@@ -10,6 +10,9 @@ using System.Web.Mvc;
 
 namespace Desensitization.Desensitize
 {
+    /// <summary>
+    /// 自定义ModelMetadataProvider
+    /// </summary>
     public class DesensitizationDataAnnotationsProvider : CachedDataAnnotationsModelMetadataProvider
     {
         protected override CachedDataAnnotationsModelMetadata CreateMetadataPrototype(IEnumerable<Attribute> attributes, Type containerType, Type modelType, string propertyName)

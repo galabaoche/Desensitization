@@ -5,6 +5,9 @@ using System.Web.Mvc;
 
 namespace Desensitization.Desensitize.Attributes
 {
+    /// <summary>
+    /// 在Model类上为客户自定义规则
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class CustomRuleAttribute : Attribute, IMetadataAware
     {

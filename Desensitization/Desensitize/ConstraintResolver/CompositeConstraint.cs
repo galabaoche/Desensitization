@@ -6,7 +6,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.ConstraintResolver
 {
-
+    /// <summary>
+    /// 组合约束
+    /// </summary>
     public class CompositeConstraint : IConstraint
     {
         public CompositeConstraint(IList<IConstraint> constraints)

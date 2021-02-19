@@ -7,6 +7,9 @@ using System.Web.Mvc;
 
 namespace Desensitization.Desensitize.ConstraintResolver
 {
+    /// <summary>
+    ///  多个约束采用并且的关系做验证
+    /// </summary>
     public class AndConstraintMatchCheck : IConstraintMatchCheck
     {
         public AndConstraintMatchCheck(IDictionary<IConstraint, object> constraints)

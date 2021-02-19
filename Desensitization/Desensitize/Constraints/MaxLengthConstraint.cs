@@ -6,7 +6,9 @@ using System.Web;
 
 namespace Desensitization.Desensitize.Constraints
 {
-
+    /// <summary>
+    /// 验证长度是否小于等于MaxLength
+    /// </summary>
     public class MaxLengthConstraint : IConstraint
     {
         public MaxLengthConstraint(int maxLength)

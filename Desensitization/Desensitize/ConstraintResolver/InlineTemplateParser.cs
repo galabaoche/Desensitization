@@ -9,6 +9,9 @@ using System.Web.Mvc;
 
 namespace Desensitization.Desensitize.ConstraintResolver
 {
+    /// <summary>
+    /// 内联约束检查解析器
+    /// </summary>
     public class InlineTemplateParser
     {
         public static IConstraintMatchCheck ParseTemplate(string template, ModelMetadata metadata)
