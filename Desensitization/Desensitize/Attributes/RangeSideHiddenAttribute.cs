@@ -13,6 +13,7 @@ namespace Desensitization.Desensitize.Attributes
     {
         public int Left { get; set; }
         public int Right { get; set; }
+        public RangeSideHiddenAttribute() { }
         public RangeSideHiddenAttribute(int left, int right) : this(string.Empty, left, right) { }
         public RangeSideHiddenAttribute(string ruleName, int left, int right) : base(ruleName)
         {

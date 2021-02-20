@@ -14,6 +14,7 @@ namespace Desensitization.Desensitize.Attributes
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class DesensitizationContainerAttribute : Attribute, IMetadataAware
     {
+        public DesensitizationContainerAttribute() { }
         public void OnMetadataCreated(ModelMetadata metadata)
         {
             metadata.Watermark = DesensitizionKey.DesensitizionContainerAttribute;

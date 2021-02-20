@@ -6,48 +6,49 @@ using System.Web;
 namespace Desensitization.Desensitize.Attributes
 {
     /// <summary>
-    /// [Min,Max]位隐藏，其他显示
+    /// [Left,Right]位隐藏，其他显示
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class RangeMiddleHiddenAttribute : DesensitizationAttribute
     {
-        public int Min { get; set; }
-        public int Max { get; set; }
-        public Func<string,int> MinFactory { get; set; }
-        public Func<string, int> MaxFactory { get; set; }
-        public RangeMiddleHiddenAttribute(int min, int max) : this(string.Empty, min, max) { }
-        public RangeMiddleHiddenAttribute(Func<string, int> minFactory, Func<string, int> maxFactory)
-            : this(string.Empty, minFactory, maxFactory) { }
-        public RangeMiddleHiddenAttribute(string ruleName, int min, int max):base(ruleName)
+        public int Left { get; set; }
+        public int Right { get; set; }
+        public Func<string,int> LeftFactory { get; set; }
+        public Func<string, int> RightFactory { get; set; }
+        public RangeMiddleHiddenAttribute() { }
+        public RangeMiddleHiddenAttribute(int left, int right) : this(string.Empty, left, right) { }
+        public RangeMiddleHiddenAttribute(Func<string, int> LeftFactory, Func<string, int> RightFactory)
+            : this(string.Empty, LeftFactory, RightFactory) { }
+        public RangeMiddleHiddenAttribute(string ruleName, int left, int right):base(ruleName)
         {
-            this.Min = min;
-            this.Max = max;
+            this.Left = left;
+            this.Right = right;
         }
-        public RangeMiddleHiddenAttribute(string ruleName, Func<string, int> minFactory, Func<string, int> maxFactory) : base(ruleName)
+        public RangeMiddleHiddenAttribute(string ruleName, Func<string, int> LeftFactory, Func<string, int> RightFactory) : base(ruleName)
         {
-            this.MinFactory = minFactory;
-            this.MaxFactory = maxFactory;
+            this.LeftFactory = LeftFactory;
+            this.RightFactory = RightFactory;
         }
         public override string DesensitizateCore(string originVaule)
         {
-            if (MinFactory != null && MaxFactory != null)
+            if (LeftFactory != null && RightFactory != null)
             {
-                this.Min = MinFactory(originVaule);
-                this.Max = MaxFactory(originVaule);
+                this.Left = LeftFactory(originVaule);
+                this.Right = RightFactory(originVaule);
             }
-            if (originVaule.Length < Min)
+            if (originVaule.Length < Left)
             {
                 return originVaule;
             }
-            if (originVaule.Length < Max)
+            if (originVaule.Length < Right)
             {
-                Max = originVaule.Length;
+                Right = originVaule.Length;
             }
             var tempValue = originVaule;
-            Min = Min < 1 ? 1 : Min;
-            if (Max > Min)
+            Left = Left < 1 ? 1 : Left;
+            if (Right > Left)
             {
-                var needProcessValue = originVaule.Substring(Min - 1, Max - Min + 1);
+                var needProcessValue = originVaule.Substring(Left - 1, Right - Left + 1);
                 tempValue = originVaule.Replace(needProcessValue, new string(DefaultDesensitizeChar, needProcessValue.Length));
             }
             return tempValue;

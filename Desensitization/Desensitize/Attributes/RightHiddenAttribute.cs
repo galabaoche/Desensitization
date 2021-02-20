@@ -12,6 +12,7 @@ namespace Desensitization.Desensitize.Attributes
     public class RightHiddenAttribute : DesensitizationAttribute
     {
         public int Number { get; set; }
+        public RightHiddenAttribute() { }
         public RightHiddenAttribute(int number) : this(string.Empty, number) { }
         public RightHiddenAttribute(string ruleName, int number) : base(ruleName)
         {

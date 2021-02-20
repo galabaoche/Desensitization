@@ -12,6 +12,7 @@ namespace Desensitization.Desensitize.Attributes
     public class RightDisplayAttribute : DesensitizationAttribute
     {
         public int Number { get; set; }
+        public RightDisplayAttribute() { }
         public RightDisplayAttribute(int number) : this( string.Empty, number) { }
         public RightDisplayAttribute(string ruleName, int number) :base(ruleName)
         {

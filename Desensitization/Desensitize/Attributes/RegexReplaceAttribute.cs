@@ -16,6 +16,7 @@ namespace Desensitization.Desensitize.Attributes
         public string Pattern { get; set; }
         public RegexOptions RegexOptions { get; set; }
         public string ReplaceContent { get; set; }
+        public RegexReplaceAttribute() { }
         public RegexReplaceAttribute(string pattern, string replaceContent, RegexOptions regexOptions = RegexOptions.Compiled)
             : this(string.Empty, pattern, replaceContent, regexOptions) { }
         public RegexReplaceAttribute(string ruleName, string pattern, string replaceContent, RegexOptions regexOptions = RegexOptions.Compiled) : base(ruleName)

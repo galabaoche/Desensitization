@@ -15,6 +15,7 @@ namespace Desensitization.Desensitize.Attributes
         public string Pattern { get; set; }
         public RegexOptions RegexOptions { get; set; }
         public string InsertContent { get; set; }
+        public RegexInsertAttribute() { }
         public RegexInsertAttribute(string pattern, string replaceContent, RegexOptions regexOptions = RegexOptions.Compiled)
            : this(string.Empty, pattern, replaceContent, regexOptions) { }
         public RegexInsertAttribute(string  ruleName, string pattern, string replaceContent, RegexOptions regexOptions = RegexOptions.Compiled) :base(ruleName)

@@ -17,6 +17,7 @@ namespace Desensitization.Desensitize.Attributes
         {
             get { return _typeId ?? (_typeId = new object()); }
         }
+        public CustomMethodAttribute(){}
         public CustomMethodAttribute(string methodFullName) : this(string.Empty, methodFullName) { }
         public CustomMethodAttribute(string ruleName, string methodFullName)
         {

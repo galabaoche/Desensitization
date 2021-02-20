@@ -16,6 +16,7 @@ namespace Desensitization.Desensitize.Attributes
         {
             get { return _typeId ?? (_typeId = new object()); }
         }
+        public CustomRuleAttribute() { }
         public CustomRuleAttribute(string ruleName, string inlineConstraint)
         {
             this.RuleName = ruleName;

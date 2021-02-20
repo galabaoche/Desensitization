@@ -1,6 +1,8 @@
-﻿using Desensitization.Desensitize;
+﻿using Desensitization.Data;
+using Desensitization.Desensitize;
 using Desensitization.Desensitize.Extensions;
 using Desensitization.Dtos;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,15 @@ namespace Desensitization.Controllers
 
     public class AccountController : ControllerBase
     {
+        private readonly IMongoCollection<CustomStrategy> _customStrategy;
+        private readonly IMongoCollection<PropertyRule> _propertyRule;
+        public AccountController()
+        {
+            var client = new MongoClient("mongodb://140.143.130.42:7017");
+            var database = client.GetDatabase("Desensitization");
+            _customStrategy= database.GetCollection<CustomStrategy>("CustomStrategy");
+            _propertyRule = database.GetCollection<PropertyRule>("PropertyRule");
+        }
         //[DesensitizeFilter]
         public ActionResult Index()
         {
@@ -96,8 +107,14 @@ namespace Desensitization.Controllers
                     }
                 },
             };
+
             // accountList.Desensitizate();
             //return Json(accountList,JsonRequestBehavior.AllowGet);
+            var customStrategyFilter = Builders<CustomStrategy>.Filter.Empty;
+            var propertyRuleFilter = Builders<PropertyRule>.Filter.Empty;
+
+            var customStrategyList = _customStrategy.Find(customStrategyFilter).ToList();
+            var propertyRuleList = _propertyRule.Find(propertyRuleFilter).ToList();
             return Desensitizate(accountList);
         }
     }

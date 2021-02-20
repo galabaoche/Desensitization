@@ -13,6 +13,7 @@ namespace Desensitization.Desensitize.Attributes
     {
         public int Number { get; set; }
         public Func<string, int> NumberFactory { get; set; }
+        public LeftDisplayAttribute() { }
         public LeftDisplayAttribute(int number) : this(string.Empty, number) { }
         public LeftDisplayAttribute(string ruleName, int number):base(ruleName)
         {
