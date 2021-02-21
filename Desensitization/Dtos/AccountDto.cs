@@ -17,7 +17,7 @@ namespace Desensitization.Dtos
 
         [DesensitizationContainer]
         public DebtorDto Debtor { get; set; }
-
+        [RangeMiddleHiddenAttribute(4)]
         public string AccountNumber { get; set; }
 
         [RegexReplace(@"(^.*$)", "***")]

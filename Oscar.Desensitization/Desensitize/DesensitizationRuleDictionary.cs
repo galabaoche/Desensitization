@@ -1,11 +1,11 @@
-﻿using Desensitization.Desensitize.Attributes;
+﻿using Oscar.Desensitization.Desensitize.Attributes;
 using Desensitization.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Desensitization.Desensitize
+namespace Oscar.Desensitization.Desensitize
 {
     /// <summary>
     /// 脱敏规则的另一种配置方式
@@ -20,7 +20,7 @@ namespace Desensitization.Desensitize
                          new DesensitizationAttribute()
                          {
                             ShortDisplayName= "Phone",
-                            //InlineConstraint= ":invoke(Desensitization.Desensitize.DesensitizationUtil.IsPhoneNumber)&IsForbidden:equal(false)",
+                            //InlineConstraint= ":invoke(Oscar.Desensitization.Desensitize.DesensitizationUtil.IsPhoneNumber)&IsForbidden:equal(false)",
                             InlineConstraint= "IsForbidden:equal(false)",
                             Condition=_=>DesensitizationUtil.IsPhoneNumber(_),
                             CustomProcess=_=>DesensitizationUtil.FormatePhoneNumber(_),
@@ -29,7 +29,7 @@ namespace Desensitization.Desensitize
                          {
                             ShortDisplayName= "NotPhone",
                             Condition=_=>!DesensitizationUtil.IsPhoneNumber(_),
-                            //InlineConstraint= ":invoke(Desensitization.Desensitize.DesensitizationUtil.IsNotPhoneNumber)",
+                            //InlineConstraint= ":invoke(Oscar.Desensitization.Desensitize.DesensitizationUtil.IsNotPhoneNumber)",
                          },
                     }
            };

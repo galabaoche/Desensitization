@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Desensitization.Desensitize.Attributes
+namespace Oscar.Desensitization.Desensitize.Attributes
 {
     /// <summary>
     /// [Left,Right]位隐藏，其他显示

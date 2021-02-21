@@ -12,6 +12,7 @@ namespace Desensitization.Data
         public ObjectId _id { get; set; }
         public string StrategyName { get; set; }
         public string PropertyFullName { get; set; }
+        public string ShortDisplayName { get; set; }
         public string RuleName { get; set; }
         public string RuleJson { get; set; }
         public string Properties { get; set; }
